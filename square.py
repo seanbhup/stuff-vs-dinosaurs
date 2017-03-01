@@ -21,7 +21,7 @@ class Square(Sprite):
         self.rect.top = (i * self.height) + game_settings.squares["start_top"];
         # -----------------
         self.square_number = (i * 9) + (j + 1);
-        print self.square_number;
+        # print self.square_number;
         self.row_number = i;
         self.column = j;
         self.character_here = False;

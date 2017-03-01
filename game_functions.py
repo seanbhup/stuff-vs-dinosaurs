@@ -19,6 +19,7 @@ def check_events(screen,game_settings,squares,characters,bullets):
                 if square.rect.collidepoint(mouse_x,mouse_y):
                     # print "Square #",square.square_number;
                     characters.add(Seed_Shooter(screen,square));
+
                 # elif square.rect.collidepoint(mouse_x,mouse_y) and event.type == pygame.KEY_SPACE:
                 #     characters.add(Mage_Shooter(screen,square));
         elif (event.type == pygame.MOUSEBUTTONDOWN) and (event.type == pygame.KEYDOWN):
@@ -32,7 +33,7 @@ def check_events(screen,game_settings,squares,characters,bullets):
             for square in squares:
                 if square.rect.collidepoint(event.pos):
                     game_settings.highlighted_square = square
-                    print game_settings.highlighted_square;
+                    # print game_settings.highlighted_square;
 
 
 
@@ -49,11 +50,19 @@ def update_screen(screen,game_settings,background,dinosaurs,squares,characters,b
     for dinosaur in dinosaurs.sprites():
         dinosaur.update();
         dinosaur.draw();
+        if dinosaur.rect.left <= dinosaur.screen_rect.left:
+            game_settings.game_active = False;
 
     for character in characters:
         character.draw();
-        if tick % 90 == 0:
-            bullets.add(Bullet(screen,character))
+        # print character.yard_row;
+        if tick % 10 == 0:
+            if game_settings.dinosaur_in_row[character.yard_row] > 0:
+                bullets.add(Bullet(screen,character))
+            else:
+                bullets.remove(Bullet(screen,character))
+
+
 
     for bullet in bullets.sprites():
         bullet.update(character);

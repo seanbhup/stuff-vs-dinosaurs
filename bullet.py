@@ -10,8 +10,9 @@ class Bullet(Sprite):
         self.image = pygame.transform.scale(self.image,(30,30));
         self.rect = self.image.get_rect();
 
-        self.rect.centerx = character.rect.right - 10;
-        self.rect.top = character.rect.top;
+        self.rect.centerx = character.rect.right - 25;
+        self.rect.top = character.rect.top + 25;
+        self.yard_row = character.yard_row
 
         self.x = self.rect.x;
         self.y = self.rect.y;
