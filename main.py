@@ -4,6 +4,7 @@ from settings import Settings;
 from background import Background;
 from square import Square;
 from character import Character;
+from dinosaur import Dinosaur;
 from bullet import Bullet;
 import game_functions as game_func
 from pygame.sprite import Group, groupcollide;
@@ -13,7 +14,7 @@ game_settings = Settings();
 screen = pygame.display.set_mode(game_settings.screen_size);
 pygame.display.set_caption("STUFF VS. DINOSAURS");
 background = Background(game_settings);
-from dinosaur import Dinosaur;
+
 
 dinosaurs = Group();
 characters = Group();
@@ -33,8 +34,24 @@ def run_game():
         game_func.update_screen(screen,game_settings,background,dinosaurs,squares,characters,bullets,tick);
         # screen.fill(game_settings.bg_color);
         tick += 1;
-        if tick % 120 == 0:
+        if tick % 110 == 0:
             dinosaurs.add(Dinosaur(screen,game_settings.dinosaur_speed,game_settings.dinosaur_health));
+
+
+        dinosaur_got_shot = groupcollide(dinosaurs,bullets,False,True);
+        character_got_hit = groupcollide(dinosaurs,characters,False,True);
+        for dinosaur in dinosaur_got_shot:
+            print dinosaur;
+            dinosaur.hit(1);
+            if(dinosaur.health <= 0):
+                dinosaurs.remove(dinosaur);
+
+        # if dinosaur_got_shot:
+        #     game_settings.dinosaur_health -= 1
+        #     if game_settings.dinosaur_health == 0:
+        #         dinosaur_got_shot = groupcollide(dinosaurs,bullets,True,True);
+        # else:
+        #     game_settings.dinosaur_health = game_settings.dinosaur_health;
 
 
 

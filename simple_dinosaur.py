@@ -1,11 +1,11 @@
 import pygame;
 from pygame.sprite import Sprite;
-from character import Character;
+from dinosaur import Dinosaur;
 
-class Mage_Shooter(Character):
+class simple_dinosaur(Dinosaur):
     def __init__(self,screen,square):
         self.screen = screen;
-        self.shoot_speed = 3;
+        self.shoot_speed = 1;
         self.health = 5;
         self.image_file = "./images/mage.png";
         self.square = square

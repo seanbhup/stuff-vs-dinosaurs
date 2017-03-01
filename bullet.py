@@ -6,11 +6,11 @@ class Bullet(Sprite):
         super(Bullet,self).__init__();
         self.screen = screen;
         self.screen_rect = self.screen.get_rect();
-        self.image = pygame.image.load("./images/deku_nut_bullet.png");
+        self.image = pygame.image.load("./images/mage_bullet.png");
         self.image = pygame.transform.scale(self.image,(30,30));
         self.rect = self.image.get_rect();
 
-        self.rect.centerx = character.rect.centerx;
+        self.rect.centerx = character.rect.right - 10;
         self.rect.top = character.rect.top;
 
         self.x = self.rect.x;
