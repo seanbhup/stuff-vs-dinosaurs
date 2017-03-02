@@ -12,5 +12,8 @@ class Character(Sprite):
         self.rect.left = self.square.rect.left # + 10;
         self.rect.top = self.square.rect.top;
         self.yard_row = self.square.row_number
+
+        self.last_shot = 0;
+        
     def draw(self):
         self.screen.blit(self.image, self.rect);

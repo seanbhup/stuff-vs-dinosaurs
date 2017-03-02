@@ -5,8 +5,8 @@ class Settings():
         display_info = pygame.display.Info();
         self.screen_size = (display_info.current_w, display_info.current_h)
         self.bg_color = (51, 153, 255)
-        self.dinosaur_speed = 1;
-        self.dinosaur_health = 5;
+        self.dinosaur_speed = .5;
+        self.dinosaur_health = 1;
         self.game_active = True;
 
 

@@ -4,6 +4,7 @@ from seed_shooter import Seed_Shooter;
 from mage_shooter import Mage_Shooter;
 from bullet import Bullet;
 from pygame.sprite import Group, groupcollide;
+import time
 
 
 def check_events(screen,game_settings,squares,characters,bullets):
@@ -56,11 +57,16 @@ def update_screen(screen,game_settings,background,dinosaurs,squares,characters,b
     for character in characters:
         character.draw();
         # print character.yard_row;
-        if tick % 10 == 0:
-            if game_settings.dinosaur_in_row[character.yard_row] > 0:
-                bullets.add(Bullet(screen,character))
-            else:
-                bullets.remove(Bullet(screen,character))
+        # if tick % 10 == 0:
+        should_shoot = time.time() - character.last_shot > character.shoot_speed;
+        in_my_row = game_settings.dinosaur_in_row[character.yard_row] > 0;
+        if should_shoot and in_my_row:
+			bullets.add(Bullet(screen,character));
+			character.last_shot = time.time();
+            # if game_settings.dinosaur_in_row[character.yard_row] > 0:
+            #     bullets.add(Bullet(screen,character))
+            # else:
+            #     bullets.remove(Bullet(screen,character))
 
 
 
